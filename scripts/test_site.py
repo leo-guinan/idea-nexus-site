@@ -13,6 +13,9 @@ for p in required:
     if p.suffix == '.html' and '####' in text:
         print('unrendered markdown heading:', p); sys.exit(1)
 pages = list((ROOT/'public').rglob('*.html'))
+marvin_js = (ROOT/'public/marvin.js').read_text()
+if 'Conversation.startSession' not in marvin_js or 'elevenlabs-convai' in marvin_js or 'convai-widget-embed' in marvin_js:
+    print('native ElevenLabs flow contract failed'); sys.exit(1)
 for p in pages:
     text = p.read_text()
     if 'id="marvin-shell"' not in text or 'src="/marvin.js"' not in text or 'id="marvin-voice"' not in text:
