@@ -11,6 +11,16 @@ python3 -m http.server 4173 --directory public
 
 Open http://localhost:4173.
 
+## Chroma Cloud page index
+
+Public Markdown pages are synced idempotently to the `inv_public_site_pages` Chroma Cloud collection. The sync uses stable route/chunk IDs, local ONNX embeddings, page metadata, stale-record cleanup, and a semantic verification query.
+
+```bash
+python3 scripts/sync_chroma_cloud.py
+```
+
+The script reads `INV_CHROMA_API_KEY`, `INV_CHROMA_TENANT`, and `INV_CHROMA_DATABASE` from the environment or `~/.hermes/.env`. It never prints or writes credentials. The GitHub workflow `.github/workflows/chroma-sync.yml` runs on page changes and expects those same names in GitHub Secrets. The public browser never receives Chroma credentials; runtime retrieval must remain server-side.
+
 ## Content architecture
 
 - `site/pages/*.md` — source content; one page per Markdown file
