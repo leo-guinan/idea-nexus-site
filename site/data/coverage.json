@@ -7,11 +7,11 @@
     {"id": "principles", "label": "Shared principles", "description": "Trust, provenance, agency, and measurable leverage."}
   ],
   "required_topics": [
-    {"slug": "network-language-models", "pillar": "products", "title": "Network language models", "status": "planned"},
-    {"slug": "trust-and-provenance", "pillar": "principles", "title": "Trust and provenance", "status": "planned"},
-    {"slug": "ai-audit-method", "pillar": "transformation", "title": "The AI audit method", "status": "planned"},
-    {"slug": "when-not-to-use-ai", "pillar": "transformation", "title": "When not to use AI", "status": "planned"},
-    {"slug": "network-signals-in-markets", "pillar": "research", "title": "Network signals in markets", "status": "planned"},
-    {"slug": "falsifiable-market-theses", "pillar": "research", "title": "Falsifiable market theses", "status": "planned"}
+    {"slug": "field-notes/network-language-models", "pillar": "products", "title": "Network language models", "status": "planned"},
+    {"slug": "field-notes/trust-and-provenance", "pillar": "principles", "title": "Trust and provenance", "status": "planned"},
+    {"slug": "field-notes/ai-audit-method", "pillar": "transformation", "title": "The AI audit method", "status": "planned"},
+    {"slug": "field-notes/when-not-to-use-ai", "pillar": "transformation", "title": "When not to use AI", "status": "planned"},
+    {"slug": "field-notes/network-signals-in-markets", "pillar": "research", "title": "Network signals in markets", "status": "planned"},
+    {"slug": "field-notes/falsifiable-market-theses", "pillar": "research", "title": "Falsifiable market theses", "status": "planned"}
   ]
 }

@@ -5,13 +5,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 coverage = json.loads((ROOT / 'site/data/coverage.json').read_text())
 existing = []
-for p in (ROOT / 'site/pages').glob('*.md'):
+for p in (ROOT / 'site/pages').rglob('*.md'):
     text = p.read_text()
     m = re.search(r'^slug:\s*(.+)$', text, re.M)
     existing.append(m.group(1).strip() if m else p.stem)
 missing = [x for x in coverage['required_topics'] if x['slug'] not in existing]
 thin = []
-for p in (ROOT / 'site/pages').glob('*.md'):
+for p in (ROOT / 'site/pages').rglob('*.md'):
     body = p.read_text().split('---', 2)[-1]
     words = len(re.findall(r'\b\w+\b', body))
     if words < 180:
