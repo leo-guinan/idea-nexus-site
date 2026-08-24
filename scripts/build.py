@@ -34,12 +34,10 @@ def markdown(body):
         line = lines[i]
         if not line.strip():
             i += 1; continue
-        if line.startswith("### "):
-            out.append(f"<h3>{inline(line[4:])}</h3>")
-        elif line.startswith("## "):
-            out.append(f"<h2>{inline(line[3:])}</h2>")
-        elif line.startswith("# "):
-            out.append(f"<h1>{inline(line[2:])}</h1>")
+        heading = re.match(r"^(#{1,6})\s+(.+)$", line)
+        if heading:
+            level = len(heading.group(1))
+            out.append(f"<h{level}>{inline(heading.group(2))}</h{level}>")
         elif line.startswith("> "):
             out.append(f"<blockquote>{inline(line[2:])}</blockquote>")
         elif line.startswith("- "):

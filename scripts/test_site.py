@@ -10,4 +10,6 @@ for p in required:
     text = p.read_text()
     if p.suffix == '.html' and ('<title>' not in text or 'IDEA NEXUS' not in text):
         print('invalid html:', p); sys.exit(1)
+    if p.suffix == '.html' and '####' in text:
+        print('unrendered markdown heading:', p); sys.exit(1)
 print(f'passed: {len(required)} required artifacts present and branded')
