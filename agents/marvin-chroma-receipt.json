@@ -1,0 +1,26 @@
+{
+  "collection": "marvin_public_knowledge",
+  "path": "/Users/leoguinan/idea-nexus-site/.local/chroma",
+  "count": 9,
+  "query": "how do you measure human capability?",
+  "top_results": [
+    {
+      "label": "Humanpower",
+      "source": "/humanpower/",
+      "distance": 0.927188,
+      "preview": "---\ntitle: Humanpower\nslug: humanpower\nkind: humanpower\npillar: principles\naccent: product\nsummary: A working account of human capability: what people can notice, coordinate, decid"
+    },
+    {
+      "label": "Humanpower",
+      "source": "/humanpower/",
+      "distance": 0.960246,
+      "preview": "Humanpower is the productive capability of a human network: the range of action available to its people, the quality of their decisions, and the speed and integrity with which they"
+    },
+    {
+      "label": "HumAIn products",
+      "source": "/products/",
+      "distance": 1.185348,
+      "preview": "HumAIn products connect AI to people, decisions, relationships, workflows, and institutional memory. The test is whether the system increases human agency and coordination without "
+    }
+  ]
+}

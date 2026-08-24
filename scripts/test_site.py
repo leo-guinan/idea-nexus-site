@@ -2,7 +2,7 @@
 from pathlib import Path
 import sys
 ROOT = Path(__file__).resolve().parents[1]
-required = [ROOT/'public/index.html', ROOT/'public/products/index.html', ROOT/'public/transform/index.html', ROOT/'public/transform/ai-audit/index.html', ROOT/'public/research/index.html', ROOT/'public/styles.css', ROOT/'public/marvin.js', ROOT/'public/marvin.json']
+required = [ROOT/'public/index.html', ROOT/'public/products/index.html', ROOT/'public/humanpower/index.html', ROOT/'public/transform/index.html', ROOT/'public/transform/ai-audit/index.html', ROOT/'public/research/index.html', ROOT/'public/styles.css', ROOT/'public/marvin.js', ROOT/'public/marvin.json']
 missing = [str(p.relative_to(ROOT)) for p in required if not p.exists()]
 if missing:
     print('missing:', ', '.join(missing)); sys.exit(1)
