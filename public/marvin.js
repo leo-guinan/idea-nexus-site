@@ -7,6 +7,8 @@
   const form = document.getElementById('marvin-form');
   const input = document.getElementById('marvin-input');
   const messages = document.getElementById('marvin-messages');
+  const voiceButton = document.getElementById('marvin-voice');
+  const voiceSurface = document.getElementById('marvin-voice-surface');
   let knowledge = null;
 
   const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ');
@@ -70,8 +72,36 @@
       knowledge = {entries: [], fallback: 'The public knowledge base is unavailable. The page is still readable; the machine is the part having a bad day.'};
     }
   }
+  async function loadVoiceAgent() {
+    if (!knowledge || !knowledge.agent_id) {
+      voiceButton.textContent = 'Voice guide is not configured';
+      voiceButton.disabled = true;
+      return;
+    }
+    voiceButton.disabled = true;
+    voiceButton.textContent = 'Loading voice guide…';
+    if (!customElements.get('elevenlabs-convai')) {
+      await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+    const widget = document.createElement('elevenlabs-convai');
+    widget.setAttribute('agent-id', knowledge.agent_id);
+    voiceSurface.replaceChildren(widget);
+    voiceSurface.hidden = false;
+    voiceButton.textContent = 'Voice guide loaded';
+  }
   toggle.addEventListener('click', () => panel.hidden ? openPanel() : closePanel());
   close.addEventListener('click', closePanel);
+  voiceButton.addEventListener('click', () => loadVoiceAgent().catch(() => {
+    voiceButton.disabled = false;
+    voiceButton.textContent = 'Voice guide unavailable — try text';
+  }));
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const question = input.value.trim();

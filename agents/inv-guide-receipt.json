@@ -1,0 +1,16 @@
+{
+  "agent_id": "agent_9601m0sz3w8aeerabrt6hhn247f8",
+  "name": "INV Guide \u2014 Marvin",
+  "public": true,
+  "voice_id": "xTJZGk1pM8cWu7HMnf9y",
+  "llm": "gemini-2.5-flash",
+  "temperature": 0.55,
+  "prompt_characters": 3545,
+  "asr_quality": "high",
+  "shareable_link_token_created": true,
+  "verified_statuses": {
+    "create": 200,
+    "agent_readback": 200,
+    "link": 200
+  }
+}
