@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "pillars": [
+    {"id": "products", "label": "HumAIn products", "description": "Products that increase the productive power of human networks."},
+    {"id": "transformation", "label": "Organizational AI transformation", "description": "Evidence-led AI integration for real organizations."},
+    {"id": "research", "label": "Market intelligence", "description": "Network-informed research for financial professionals."},
+    {"id": "principles", "label": "Shared principles", "description": "Trust, provenance, agency, and measurable leverage."}
+  ],
+  "required_topics": [
+    {"slug": "network-language-models", "pillar": "products", "title": "Network language models", "status": "planned"},
+    {"slug": "trust-and-provenance", "pillar": "principles", "title": "Trust and provenance", "status": "planned"},
+    {"slug": "ai-audit-method", "pillar": "transformation", "title": "The AI audit method", "status": "planned"},
+    {"slug": "when-not-to-use-ai", "pillar": "transformation", "title": "When not to use AI", "status": "planned"},
+    {"slug": "network-signals-in-markets", "pillar": "research", "title": "Network signals in markets", "status": "planned"},
+    {"slug": "falsifiable-market-theses", "pillar": "research", "title": "Falsifiable market theses", "status": "planned"}
+  ]
+}

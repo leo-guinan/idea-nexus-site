@@ -1,0 +1,29 @@
+name: Identify content gaps
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 13 * * 1'
+permissions:
+  contents: read
+  issues: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate coverage report
+        run: python3 scripts/content_gaps.py | tee content-coverage-report.md
+      - name: Create or update report issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --label content-gap --state open --json number --jq '.[0].number' > issue_number.txt
+          if [ -s issue_number.txt ]; then
+            gh issue edit "$(cat issue_number.txt)" --body-file content-coverage-report.md --title "Content coverage report"
+          else
+            gh label create content-gap --description "Editorial coverage gap" --color C28E0E 2>/dev/null || true
+            gh issue create --title "Content coverage report" --body-file content-coverage-report.md --label content-gap
+          fi

@@ -1,0 +1,76 @@
+name: Propose a content page
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Approved topic slug from site/data/coverage.json'
+        required: true
+        type: string
+      title:
+        description: 'Page title'
+        required: true
+        type: string
+      pillar:
+        description: 'products, transformation, research, or principles'
+        required: true
+        type: string
+      thesis:
+        description: 'One-sentence page thesis'
+        required: true
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  proposal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create proposal source
+        env:
+          SLUG: ${{ inputs.slug }}
+          TITLE: ${{ inputs.title }}
+          PILLAR: ${{ inputs.pillar }}
+          THESIS: ${{ inputs.thesis }}
+        run: |
+          mkdir -p site/proposals
+          cat > "site/proposals/${SLUG}.md" <<EOF
+          ---
+          title: ${TITLE}
+          slug: proposals/${SLUG}
+          kind: proposal
+          pillar: ${PILLAR}
+          status: draft
+          ---
+
+          # ${TITLE}
+
+          ${THESIS}
+
+          ## What we observed
+
+          <!-- Agent: add source-backed observations here. -->
+
+          ## What this means
+
+          <!-- Separate interpretation from observation. -->
+
+          ## What would falsify this
+
+          <!-- State a concrete disconfirming condition. -->
+
+          ## Sources
+
+          <!-- Add URLs or repository artifacts. -->
+          EOF
+      - name: Open review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SLUG: ${{ inputs.slug }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "site/proposals/${SLUG}.md"
+          git commit -m "content: propose ${SLUG}"
+          git push origin HEAD:refs/heads/content/${SLUG}
+          gh pr create --title "Content proposal: ${SLUG}" --body "Agent-generated proposal only. Human review is required before moving this page into site/pages and publishing." --head "content/${SLUG}" --base main
