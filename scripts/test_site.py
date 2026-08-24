@@ -15,6 +15,6 @@ for p in required:
 pages = list((ROOT/'public').rglob('*.html'))
 for p in pages:
     text = p.read_text()
-    if 'id="marvin-shell"' not in text or 'src="/marvin.js"' not in text:
+    if 'id="marvin-shell"' not in text or 'src="/marvin.js"' not in text or 'id="marvin-voice"' not in text:
         print('Marvin missing from:', p); sys.exit(1)
 print(f'passed: {len(required)} required artifacts and Marvin on {len(pages)} pages')
